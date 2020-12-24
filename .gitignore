@@ -107,7 +107,7 @@ media/
 *.db
 *.pid
 
-documents/
+datafiles/
 
 # Ignore Django Migrations in Development if you are working on team
 

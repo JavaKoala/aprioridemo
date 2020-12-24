@@ -1,10 +1,10 @@
 <h2>Welcome to the Apriori demo</h2>
     <!-- List of uploaded documents -->
-    {% if documents %}
-        All documents in the database:
+    {% if data_sets %}
+        All data sets in the database:
         <ul>
-            {% for document in documents %}
-                <li><a href="{% url 'show' document.id %}">{{ document.docfile.name }}</a></li>
+            {% for data_set in data_sets %}
+                <li><a href="{% url 'show' data_set.id %}">{{ data_set.datafile.name }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
@@ -16,11 +16,11 @@
         {{ message }}
         <p>{{ form.non_field_errors }}</p>
 
-        <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+        <p>{{ form.datafile.label_tag }} {{ form.datafile.help_text }}</p>
 
         <p>
-            {{ form.docfile.errors }}
-            {{ form.docfile }}
+            {{ form.datafile.errors }}
+            {{ form.datafile }}
         </p>
 
         <p><input type="submit" value="Upload"/></p>

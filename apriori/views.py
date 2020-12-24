@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 
 # Create your views here.
 from django.http import HttpResponse
-from .models import Document
+from .models import DataSet
 from .forms import UploadFileForm
 
 def index(request):
@@ -11,8 +11,8 @@ def index(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Document(docfile=request.FILES['docfile'])
-            newdoc.save()
+            new_data_set = DataSet(datafile=request.FILES['datafile'])
+            new_data_set.save()
 
             return redirect('index')
         else:
@@ -20,12 +20,12 @@ def index(request):
     else:
         form = UploadFileForm()
 
-    documents = Document.objects.all()
+    data_sets = DataSet.objects.all()
 
-    context = {'documents': documents, 'form': form, 'message': message}
+    context = {'data_sets': data_sets, 'form': form, 'message': message}
     return render(request, 'apriori/index.html', context)
 
-def show(request, document_id):
-    document = Document.objects.get(pk=document_id)
-    context = {'document': document}
+def show(request, data_set_id):
+    data_set = DataSet.objects.get(pk=data_set_id)
+    context = {'data_set': data_set}
     return render(request, 'apriori/show.html', context)
