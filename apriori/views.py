@@ -14,16 +14,18 @@ def index(request):
             newdoc = Document(docfile=request.FILES['docfile'])
             newdoc.save()
 
-            # Redirect to the document list after POST
             return redirect('index')
         else:
             message = 'The form is not valid. Fix the following error:'
     else:
-        form = UploadFileForm()  # An empty, unbound form
+        form = UploadFileForm()
 
-    # Load documents for the list page
     documents = Document.objects.all()
 
-    # Render list page with the documents and the form
     context = {'documents': documents, 'form': form, 'message': message}
     return render(request, 'apriori/index.html', context)
+
+def show(request, document_id):
+    document = Document.objects.get(pk=document_id)
+    context = {'document': document}
+    return render(request, 'apriori/show.html', context)
