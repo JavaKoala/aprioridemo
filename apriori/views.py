@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import DataSet
 from .forms import UploadFileForm
+from .ml import Apriori
 
 def index(request):
     message = ''
@@ -27,5 +28,9 @@ def index(request):
 
 def show(request, data_set_id):
     data_set = DataSet.objects.get(pk=data_set_id)
-    context = {'data_set': data_set}
+
+    processor = Apriori(data_set.datafile)
+    result = processor.process()
+
+    context = {'data_set': data_set, 'result': result}
     return render(request, 'apriori/show.html', context)
