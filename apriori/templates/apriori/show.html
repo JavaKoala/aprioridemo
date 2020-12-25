@@ -8,5 +8,24 @@
 
     <h4>Showing Output for {{ data_set.datafile.name }}</h4>
 
-    <p>{{ result }}</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Left Hand Side</th>
+                <th>Right Hand Side</th>
+                <th>Support</th>
+                <th>Confidence</th>
+                <th>Lift</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for items in result %}
+                <tr>
+                    {% for item in items %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
