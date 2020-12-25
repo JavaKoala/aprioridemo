@@ -7,6 +7,15 @@
     {# Load CSS and JavaScript #}
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'apriori/DataTables/datatables.min.css' %}"/>
+    <script type="text/javascript" src="{% static 'apriori/DataTables/datatables.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#data-table').DataTable();
+        });
+    </script>
     <title>Apriori Demo</title>
 </head>
 
