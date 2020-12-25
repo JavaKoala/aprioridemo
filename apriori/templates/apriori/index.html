@@ -1,4 +1,7 @@
-<h2>Welcome to the Apriori demo</h2>
+{% extends "apriori/base.html" %}
+
+{% block content %}
+    <h2>Welcome to the Apriori demo</h2>
     <!-- List of uploaded documents -->
     {% if data_sets %}
         All data sets in the database:
@@ -25,3 +28,4 @@
 
         <p><input type="submit" value="Upload"/></p>
     </form>
+{% endblock %}

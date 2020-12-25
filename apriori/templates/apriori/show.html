@@ -1,8 +1,12 @@
-<h3>Showing Dataset</h3>
+{% extends "apriori/base.html" %}
 
-<a href="{% url 'index' %}">Home</a>
-<br>
+{% block content %}
+    <h3>Showing Dataset</h3>
 
-<h4>Showing Output for {{ data_set.datafile.name }}</h4>
+    <a href="{% url 'index' %}">Home</a>
+    <br>
 
-<p>{{ result }}</p>
+    <h4>Showing Output for {{ data_set.datafile.name }}</h4>
+
+    <p>{{ result }}</p>
+{% endblock %}
