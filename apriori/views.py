@@ -1,4 +1,6 @@
+import os
 from django.shortcuts import redirect, render
+from os import remove
 
 # Create your views here.
 from django.http import HttpResponse
@@ -34,3 +36,13 @@ def show(request, data_set_id):
 
     context = {'data_set': data_set, 'result': result}
     return render(request, 'apriori/show.html', context)
+
+def delete(request, data_set_id):
+    data_set = DataSet.objects.get(pk=data_set_id)
+
+    if os.path.exists(data_set.datafile.name):
+        os.remove(data_set.datafile.name)
+
+    data_set.delete()
+
+    return redirect('index')

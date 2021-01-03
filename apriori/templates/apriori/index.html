@@ -29,12 +29,22 @@
                 <thead>
                     <tr>
                         <th>File</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for data_set in data_sets %}
                         <tr>
-                            <td><a href="{% url 'show' data_set.id %}">{{ data_set.datafile.name }}</a></td>
+                            <td><a href="{% url 'delete' data_set.id %}">{{ data_set.datafile.name }}</a></td>
+                            <td>
+                                <form action="{% url 'delete' data_set.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit"
+                                           value="Delete"
+                                           class="btn btn btn-danger"
+                                           onclick="return confirm('Are you sure you want to delete?');"/>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
